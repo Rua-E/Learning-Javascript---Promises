@@ -43,10 +43,13 @@
 // CREAT A FUNCTION
 
 const statusRef = document.querySelector(".status");
+const videoRef = document.querySelector(".video");
 
 function getSubscriptionStatus() {
   return new Promise((resolve, reject) => {
-    resolve("VIP");
+    setTimeout ( () => {
+        resolve(undefined);
+    }, 2000);
   });
 }
 
@@ -65,7 +68,13 @@ function getVideo(subscriptionStatus) {
 async function main() {
   const status = await getSubscriptionStatus();
   statusRef.innerHTML = status;
-  console.log(getVideo(status));
+  try {
+    console.log(await getVideo(status));
+  }
+  catch (e) {
+    console.log(e)
+    videoRef.innerHTML = e;
+  }
 }
 
 main();
